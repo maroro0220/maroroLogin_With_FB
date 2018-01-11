@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FacebookLogin</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!--만약에 유저가 로그인 하면,-->
+  <%if user_signed_in?%>
+  <!-- 1. 이메일을 출력하고 로그아웃 버튼을 만든다 -->
+    <%=current_user.email%>
+    <%=link_to "로그아웃", destroy_user_session_path, method: :delete%>
+
+  <%else%>
+  <!-- 2. 로그인 버튼을 만든다 -->
+    <%=link_to "로그인",new_user_session_path%>
+    <%=link_to "회원가입",new_user_registration_path%>
+  <%end%>
+
+<%= yield %>
+
+</body>
+</html>
